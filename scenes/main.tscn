@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvhiwcio2gx8v"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_rbuub"]
+[ext_resource type="Texture2D" uid="uid://3lqki5r7j66n" path="res://assets/soil.png" id="2_f1h1q"]
+[ext_resource type="Script" path="res://scripts/LevelUp.gd" id="3_66smx"]
+[ext_resource type="Script" path="res://scripts/plantButton.gd" id="3_sx2ne"]
+[ext_resource type="Script" path="res://scripts/MoneyText.gd" id="4_p60e0"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_rbuub")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 456)
+scale = Vector2(12, 12)
+texture = ExtResource("2_f1h1q")
+
+[node name="LevelUp" type="Button" parent="."]
+offset_left = 880.0
+offset_top = 112.0
+offset_right = 1154.0
+offset_bottom = 208.0
+theme_override_font_sizes/font_size = 64
+text = "Level Up"
+script = ExtResource("3_66smx")
+
+[node name="Plant Button" type="Button" parent="."]
+offset_left = 976.0
+offset_top = 8.0
+offset_right = 1144.0
+offset_bottom = 104.0
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 64
+text = "Plant"
+script = ExtResource("3_sx2ne")
+
+[node name="MoneyText" type="RichTextLabel" parent="."]
+offset_right = 496.0
+offset_bottom = 72.0
+theme_override_font_sizes/normal_font_size = 48
+text = "$$$: "
+script = ExtResource("4_p60e0")
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+position = Vector2(576, 456)
+
+[node name="Level 0" type="Node2D" parent="SpawnPoints"]
+
+[node name="SP1" type="Node2D" parent="SpawnPoints/Level 0"]
+
+[node name="Level 1" type="Node2D" parent="SpawnPoints"]
+
+[node name="SP1" type="Node2D" parent="SpawnPoints/Level 1"]
+position = Vector2(-192, -8)
+
+[node name="SP2" type="Node2D" parent="SpawnPoints/Level 1"]
+position = Vector2(192, 0)
+
+[node name="Level 2" type="Node2D" parent="SpawnPoints"]
+
+[node name="SP1" type="Node2D" parent="SpawnPoints/Level 2"]
+position = Vector2(-128, -80)
+
+[node name="SP2" type="Node2D" parent="SpawnPoints/Level 2"]
+position = Vector2(136, -80)
+
+[node name="SP3" type="Node2D" parent="SpawnPoints/Level 2"]
+position = Vector2(0, 120)
+
+[connection signal="pressed" from="LevelUp" to="." method="_on_level_up_pressed"]
+[connection signal="pressed" from="Plant Button" to="." method="_on_plant_button_pressed"]
