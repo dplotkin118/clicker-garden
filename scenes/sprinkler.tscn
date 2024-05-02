@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://s5d0mw5ydgd0"]
+
+[ext_resource type="Script" path="res://scripts/Sprinkler.gd" id="1_iiwwn"]
+[ext_resource type="Texture2D" uid="uid://blenvuge1lvti" path="res://assets/shower-Sheet.png" id="2_pi7os"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryuft"]
+atlas = ExtResource("2_pi7os")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv732"]
+atlas = ExtResource("2_pi7os")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xk710"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_ryuft")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_fv732")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Sprinkler" type="Node2D"]
+script = ExtResource("1_iiwwn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_xk710")
+frame = 1
+frame_progress = 0.65427

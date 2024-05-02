@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnlfyk0sj0kld"]
+
+[ext_resource type="Script" path="res://scripts/spawn_point.gd" id="1_pdjsg"]
+[ext_resource type="Texture2D" uid="uid://dvxlytofmgdhb" path="res://assets/darksoil.png" id="2_42kco"]
+[ext_resource type="PackedScene" uid="uid://s5d0mw5ydgd0" path="res://scenes/sprinkler.tscn" id="2_gi50d"]
+
+[node name="Spawn Point" type="Node2D"]
+z_index = 1
+script = ExtResource("1_pdjsg")
+
+[node name="Sprinkler" parent="." instance=ExtResource("2_gi50d")]
+position = Vector2(2.08165e-12, -100)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 72)
+scale = Vector2(5, 5)
+texture = ExtResource("2_42kco")

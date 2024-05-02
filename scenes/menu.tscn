@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://l8u8n32kh7yc"]
+
+[ext_resource type="Texture2D" uid="uid://ik2pskyli8x8" path="res://assets/menu.png" id="1_we18f"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_x74ao"]
+[ext_resource type="Theme" uid="uid://c64admhq5804p" path="res://default.tres" id="2_co2kx"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x74ao")
+
+[node name="Menu BG" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 1160.0
+offset_bottom = 640.0
+texture = ExtResource("1_we18f")
+
+[node name="Main Menu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Level" type="Button" parent="Main Menu"]
+offset_left = 448.0
+offset_top = 224.0
+offset_right = 712.0
+offset_bottom = 408.0
+theme = ExtResource("2_co2kx")
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 28
+text = "Level Up"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Plants" type="Button" parent="Main Menu"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 224.0
+offset_right = 368.0
+offset_bottom = 408.0
+theme = ExtResource("2_co2kx")
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 32
+keep_pressed_outside = true
+text = "Plants"
+icon_alignment = 1
+expand_icon = true
+
+[node name="Shop" type="Button" parent="Main Menu"]
+offset_left = 800.0
+offset_top = 232.0
+offset_right = 1064.0
+offset_bottom = 416.0
+theme = ExtResource("2_co2kx")
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 32
+text = "Shop"
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+
+[node name="Shop Menu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Plants Menu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="Main Menu/Level" to="." method="_on_level_pressed"]

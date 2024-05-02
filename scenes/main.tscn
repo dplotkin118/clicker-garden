@@ -1,11 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://bvhiwcio2gx8v"]
+[gd_scene load_steps=11 format=3 uid="uid://bvhiwcio2gx8v"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_rbuub"]
 [ext_resource type="Texture2D" uid="uid://3lqki5r7j66n" path="res://assets/soil.png" id="2_f1h1q"]
+[ext_resource type="PackedScene" uid="uid://dnlfyk0sj0kld" path="res://scenes/spawn_point.tscn" id="2_lcnh6"]
 [ext_resource type="Texture2D" uid="uid://buw613clf1amx" path="res://assets/soil1.png" id="2_o0lhk"]
-[ext_resource type="Script" path="res://scripts/LevelUp.gd" id="3_66smx"]
-[ext_resource type="Script" path="res://scripts/plantButton.gd" id="3_sx2ne"]
 [ext_resource type="Script" path="res://scripts/MoneyText.gd" id="4_p60e0"]
+[ext_resource type="FontFile" uid="uid://bordgavdeevr0" path="res://fonts/PixelFJVerdana12pt.ttf" id="5_41qbu"]
+[ext_resource type="Theme" uid="uid://c64admhq5804p" path="res://default.tres" id="5_jmbcp"]
+[ext_resource type="Texture2D" uid="uid://v74x2bywg7sr" path="res://assets/buttons/default button-Sheet.png" id="7_7mrhp"]
+[ext_resource type="PackedScene" uid="uid://l8u8n32kh7yc" path="res://scenes/menu.tscn" id="9_wbvu2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2wdy0"]
+texture = ExtResource("7_7mrhp")
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 24, 16)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_rbuub")
@@ -15,31 +26,38 @@ position = Vector2(576, 456)
 
 [node name="Level 0" type="Node2D" parent="SpawnPoints"]
 
-[node name="SP1" type="Node2D" parent="SpawnPoints/Level 0"]
-position = Vector2(0, 96)
+[node name="SP1" parent="SpawnPoints/Level 0" instance=ExtResource("2_lcnh6")]
+top_level = true
+position = Vector2(576, 512)
 
 [node name="Level 1" type="Node2D" parent="SpawnPoints"]
 
-[node name="SP1" type="Node2D" parent="SpawnPoints/Level 1"]
-position = Vector2(-80, 96)
+[node name="SP1" parent="SpawnPoints/Level 1" instance=ExtResource("2_lcnh6")]
+visible = false
+position = Vector2(-168, 24)
 
-[node name="SP2" type="Node2D" parent="SpawnPoints/Level 1"]
-position = Vector2(112, 96)
+[node name="SP2" parent="SpawnPoints/Level 1" instance=ExtResource("2_lcnh6")]
+visible = false
+position = Vector2(176, 24)
 
 [node name="Level 2" type="Node2D" parent="SpawnPoints"]
 
-[node name="SP1" type="Node2D" parent="SpawnPoints/Level 2"]
-position = Vector2(-128, -80)
+[node name="SP1" parent="SpawnPoints/Level 2" instance=ExtResource("2_lcnh6")]
+visible = false
+position = Vector2(0, 112)
 
-[node name="SP2" type="Node2D" parent="SpawnPoints/Level 2"]
-position = Vector2(136, -80)
+[node name="SP2" parent="SpawnPoints/Level 2" instance=ExtResource("2_lcnh6")]
+visible = false
+position = Vector2(-192, 24)
 
-[node name="SP3" type="Node2D" parent="SpawnPoints/Level 2"]
-position = Vector2(0, 120)
+[node name="SP3" parent="SpawnPoints/Level 2" instance=ExtResource("2_lcnh6")]
+visible = false
+position = Vector2(176, 24)
 
 [node name="DirtContainer" type="Node2D" parent="."]
 
 [node name="Dirt" type="Sprite2D" parent="DirtContainer"]
+visible = false
 position = Vector2(576, 544)
 scale = Vector2(12, 12)
 texture = ExtResource("2_o0lhk")
@@ -52,30 +70,63 @@ texture = ExtResource("2_f1h1q")
 
 [node name="Dirt3" type="Sprite2D" parent="DirtContainer"]
 visible = false
-position = Vector2(576, 456)
-scale = Vector2(6, 6)
+position = Vector2(576, 480)
+scale = Vector2(10, 10)
 texture = ExtResource("2_f1h1q")
 
 [node name="LevelUp" type="Button" parent="."]
-offset_left = 880.0
-offset_top = 112.0
-offset_right = 1154.0
-offset_bottom = 208.0
-theme_override_font_sizes/font_size = 64
-text = "Level Up"
-script = ExtResource("3_66smx")
-
-[node name="Plant Button" type="Button" parent="."]
-offset_left = 976.0
-offset_top = 8.0
+offset_left = 992.0
+offset_top = 104.0
 offset_right = 1144.0
-offset_bottom = 104.0
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 64
-text = "Plant"
-script = ExtResource("3_sx2ne")
+offset_bottom = 168.0
+theme = ExtResource("5_jmbcp")
+text = "Level Up"
 
-[node name="MoneyText" type="RichTextLabel" parent="."]
+[node name="Sprinkler Button" type="Button" parent="."]
+offset_left = 840.0
+offset_top = 216.0
+offset_right = 1157.0
+offset_bottom = 291.0
+pivot_offset = Vector2(3288, 344)
+theme_override_font_sizes/font_size = 48
+text = "Buy Sprinkler"
+
+[node name="Menu" parent="." instance=ExtResource("9_wbvu2")]
+visible = false
+z_index = 3
+
+[node name="UI" type="Control" parent="."]
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Menu Button" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 584.0
+offset_right = 96.0
+offset_bottom = 630.0
+theme = ExtResource("5_jmbcp")
+theme_override_styles/normal = SubResource("StyleBoxTexture_2wdy0")
+text = "Menu"
+
+[node name="Plant Button" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 992.0
+offset_right = 1152.0
+offset_bottom = 88.0
+size_flags_horizontal = 8
+theme = ExtResource("5_jmbcp")
+theme_override_fonts/font = ExtResource("5_41qbu")
+theme_override_font_sizes/font_size = 32
+text = "Plant"
+icon_alignment = 1
+expand_icon = true
+
+[node name="MoneyText" type="RichTextLabel" parent="UI"]
+layout_mode = 0
 offset_right = 496.0
 offset_bottom = 72.0
 theme_override_font_sizes/normal_font_size = 48
@@ -83,4 +134,7 @@ text = "$$$: "
 script = ExtResource("4_p60e0")
 
 [connection signal="pressed" from="LevelUp" to="." method="_on_level_up_pressed"]
-[connection signal="pressed" from="Plant Button" to="." method="_on_plant_button_pressed"]
+[connection signal="pressed" from="Sprinkler Button" to="." method="_on_sprinkler_button_pressed"]
+[connection signal="level_up" from="Menu" to="." method="_on_menu_level_up"]
+[connection signal="button_down" from="UI/Menu Button" to="." method="_on_menu_button_button_down"]
+[connection signal="pressed" from="UI/Plant Button" to="." method="_on_plant_button_pressed"]
