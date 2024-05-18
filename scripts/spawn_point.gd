@@ -17,6 +17,7 @@ func _process(delta: float) -> void:
 		get_node("Sprinkler").visible = false
 
 func _on_sold(cost: int) -> void:
+	print('sold')
 	has_plant = false
 
 func update_values(values_array: Array) -> void:

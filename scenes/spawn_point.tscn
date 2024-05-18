@@ -12,6 +12,7 @@ script = ExtResource("1_pdjsg")
 position = Vector2(2.08165e-12, -100)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, 72)
 scale = Vector2(5, 5)
 texture = ExtResource("2_42kco")

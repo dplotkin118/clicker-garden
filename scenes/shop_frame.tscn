@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnt36ejlphta1"]
+
+[ext_resource type="Theme" uid="uid://c5e6d7o5aewta" path="res://shop_frame.tres" id="1_k1d6h"]
+[ext_resource type="Script" path="res://scripts/shop_frame.gd" id="2_jnhpp"]
+[ext_resource type="Texture2D" uid="uid://bk4jhcxihj3wk" path="res://assets/poppy.png" id="2_x4171"]
+[ext_resource type="Texture2D" uid="uid://cvci7d58034qq" path="res://assets/window.png" id="3_wux4u"]
+[ext_resource type="FontFile" uid="uid://cu4ibmwsgoxq0" path="res://fonts/Kenney Pixel.ttf" id="5_5744s"]
+
+[node name="Shop Frame" type="Button" groups=["frame"]]
+custom_minimum_size = Vector2(300, 300)
+anchors_preset = -1
+anchor_left = -0.042
+anchor_top = -0.062
+anchor_right = 0.143
+anchor_bottom = 0.237
+offset_left = -102.36
+offset_top = -100.04
+offset_right = -369.048
+offset_bottom = -340.208
+scale = Vector2(4, 4)
+theme = ExtResource("1_k1d6h")
+script = ExtResource("2_jnhpp")
+
+[node name="Plant" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.167
+anchor_top = 0.167
+anchor_right = 0.875
+anchor_bottom = 0.833
+offset_left = -0.00800025
+offset_top = -0.00800025
+offset_bottom = 0.00799847
+texture = ExtResource("2_x4171")
+stretch_mode = 5
+
+[node name="CostText" type="RichTextLabel" parent="Plant"]
+offset_left = -18.0
+offset_top = -14.0
+offset_right = 42.0
+offset_bottom = -2.0
+theme_override_fonts/normal_font = ExtResource("5_5744s")
+bbcode_enabled = true
+fit_content = true
+
+[node name="Window" type="TextureRect" parent="Plant"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.235
+anchor_top = -0.234
+anchor_right = 1.176
+anchor_bottom = 1.266
+offset_left = -5.08411
+offset_top = -12.2431
+offset_right = 1.20817
+offset_bottom = 1.03293
+texture = ExtResource("3_wux4u")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

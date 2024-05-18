@@ -3,7 +3,7 @@ extends Node
 var plant_scene: Resource = load("res://scenes/plant.tscn")
 var sprinkler_scene: Resource = load("res://scenes/sprinkler.tscn")
 @onready var spawn_points: Node2D = $SpawnPoints
-@onready var money_text: RichTextLabel = $MoneyText
+@onready var money_text: RichTextLabel = $UI/MoneyText
 @onready var dirt_container: Node2D = $DirtContainer
 @onready var menu: Control = $Menu
 @onready var UI_screen: Control = $UI
@@ -13,6 +13,13 @@ func _ready() -> void:
 	PlayerVariables.water_strength = 30
 	update_dirt()
 
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("menu"):
+		menu.visible = !menu.visible
+		UI_screen.visible = !UI_screen.visible
+	if menu.visible == false:
+		UI_screen.visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -24,12 +31,12 @@ func _process(_delta: float) -> void:
 
 func _on_plant_button_pressed() -> void:
 	var plant_location: Node2D = check_open_slot()
-	if plant_location != null:
+	if plant_location != null && PlantInfo.check_price(PlantInfo.selected_plant, "plant"):
 		spawn_plant(PlantInfo.selected_plant, plant_location)
 
 func _on_plant_sold(value: int) -> void:
 	PlayerVariables.money += value
-	money_text.text = "$$$: " + str(PlayerVariables.money)
+	money_text.text = str(PlayerVariables.money)
 
 
 func check_open_slot() -> Node2D:
@@ -57,11 +64,6 @@ func update_dirt() -> void:
 			dirt_children[idx].visible = true
 		else:
 			dirt_children[idx].visible = false
-
-func _on_sprinkler_button_pressed() -> void:
-	print("sprinkler")
-	spawn_sprinkler()
-
 
 #makes necessary updates on level up
 func level_up() -> void:
@@ -106,3 +108,6 @@ func _on_menu_level_up() -> void:
 
 func _on_menu_button_button_down() -> void:
 	menu.visible = true
+
+func _on_menu_sprinkler_bought() -> void:
+	spawn_sprinkler()

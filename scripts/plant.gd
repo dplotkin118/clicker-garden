@@ -7,6 +7,7 @@ var grown: bool = false
 var breakpoints: Array = [100, 300, 350]
 var cost: int = 0
 var fertilizer: float = 1.0
+var curr_name: String = ""
 
 var plant_idx: int = 0
 @onready var spritesheet: Sprite2D = $Sprite2D
@@ -48,7 +49,7 @@ func set_values(plant_name: String, sprinkler: bool = false) -> void:
 	self.is_sprinkler = sprinkler
 	self.cost = PlantInfo.plant_dict[plant_name][1]
 	self.breakpoints = PlantInfo.plant_dict[plant_name][0]
-
+	self.curr_name = plant_name
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton: 
